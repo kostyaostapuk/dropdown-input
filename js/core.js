@@ -17,10 +17,6 @@ function search() {
 			result=country[i];
     }
   }
-	countryInput.onchange = function() {
-		countryInput.value = result;
-		clearList();
-	};
   clicked = true;
 }
 
