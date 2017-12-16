@@ -1,0 +1,20 @@
+#list li{
+	list-style: none;
+	text-align: left;
+	width: 170px;
+}
+.dropdown{
+	width: 170px;
+}
+.dropdown:focus{
+	outline-color: transparent;
+}
+ul{
+	padding-left: 5px;
+	margin-top: 4px;
+	max-height: 25px;
+	overflow-y: visible;
+}
+li:hover{
+	cursor: pointer;
+}
