@@ -9,26 +9,35 @@ var clicked = false;
 
 function search() {
   var countryVal = countryInput.value;
+	var result;
   clearList();
   for (var i = 0; i < country.length; i++) {
     if (country[i].toLowerCase().search(countryVal) != -1) {
       countryList.innerHTML += "<li id='" + country[i] + "'>" + country[i] + "</li>";
+			result=country[i];
     }
   }
+	countryInput.onchange = function() {
+		countryInput.value = result;
+		clearList();
+	};
   clicked = true;
 }
+
 function showList() {
   if (clicked == false) {
     for (var i = 0; i < country.length; i++) {
-      countryList.innerHTML += "<li id='" + country[i] + "'>" + country[i] + "</li>";
+      countryList.innerHTML += "<li tabindex='"+i+"' id='" + country[i] + "'>" + country[i] + "</li>";
     }
     clicked = true;
   }
 }
+
 function clearList() {
-		countryList.innerHTML = "";
-	  clicked = false;
+  countryList.innerHTML = "";
+  clicked = false;
 }
+
 function checkClicked() {
   function getEventTarget(e) {
     e = e || window.event;
@@ -36,20 +45,13 @@ function checkClicked() {
   }
   countryList.onclick = function(event) {
     var target = getEventTarget(event);
-    countryInput.value=target.innerHTML;
+    countryInput.value = target.innerHTML;
     clearList();
   };
 }
 
 checkClicked();
-countryInput.oninput=function(){
-	search();
+countryInput.oninput = function() {
+  search();
 };
 countryInput.addEventListener("click", showList);
-dropdown.onclick=function(){
-	dropdown.focus();
-};
-dropdown.onblur=function(){
-	countryInput.innerHTML="";
-	clearList();
-};
